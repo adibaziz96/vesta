@@ -1,9 +1,12 @@
-passdb {
+passdb passwd-file {
   driver = passwd-file
-  args = scheme=MD5-CRYPT username_format=%n /etc/exim4/domains/%d/passwd
+  auth_username_format = %{user | username}
+  default_password_scheme = MD5-CRYPT
+  passwd_file_path = /etc/exim4/domains/%d/passwd
 }
 
-userdb {
+userdb passwd-file {
   driver = passwd-file
-  args = username_format=%n /etc/exim4/domains/%d/passwd
+  auth_username_format = %{user | username}
+  passwd_file_path = /etc/exim4/domains/%d/passwd
 }
